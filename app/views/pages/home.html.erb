@@ -1,0 +1,29 @@
+<div class="d-flex flex-row">
+  <%= render 'sidebar' %>
+  <div class="col-10 p-1">
+    <button id="sidebarCollapse" type="button" class="btn btn-secondary rounded-pill shadow-sm px-1 mb-2">
+      <i id="sidebar_button_icon" class="bi bi-file-excel"></i><small class="p-1 text-uppercase font-weight-bold">
+      Table of Contents</small>
+    </button>
+    <div class="album py-2">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+
+          <div class="container">
+            <h1>Doc's Place</h1>
+            <h6>Chapter ? Part ?</h6>
+            <%= render 'story' %>
+          </div>
+          
+          <div class="container">
+            <strong style="font-family:arial;font-size:12px;">
+              Doc's Place Chat<br>©2008 by Michel Grover<br>Chapter 1 - Part 1<br>Summer-Fall 2007
+            </strong>
+            <hr>
+            <%= render 'chat' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

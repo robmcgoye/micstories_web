@@ -1,0 +1,103 @@
+@import "bootstrap-icons/font/bootstrap-icons";
+@font-face {
+  font-family: "bootstrap-icons";
+  src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
+    font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+}
+@import 'bootstrap/dist/css/bootstrap';
+
+.sidebar{
+  height: calc(100vh - 155px);
+  width: 225px;
+  min-width: 180px;
+}
+
+.light-footer{
+  font-size: 8pt;
+  color:  black;
+  display: block;
+}
+
+.text-light-footer{
+  color:  black;
+  text-decoration: none;
+  &:hover, &:focus {
+    color: #5c5c5c;
+  } 
+}
+
+.dark-footer{
+  background-color: #bebebe;
+  color:#233b74;
+}
+
+.text-dark-footer{
+  color: #233b74;
+  text-decoration: none;
+  &:hover, &:focus {
+    color: #5c5c5c;
+  } 
+}
+
+.scroll {
+    overflow-y: auto !important;
+    height: calc(100vh - 155px);
+}
+
+.scroll2 {
+    overflow-y: auto !important;
+}
+
+.dropdown-toggle { outline: 0; }
+
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .5rem;
+  font-weight: 600;
+  // color: rgba(247, 241, 241, 0.65);
+  color: rgba(0, 0, 0, .65);
+  background-color: transparent;
+  border: 0;
+}
+
+.btn-toggle:hover,
+.btn-toggle:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: #e7e7e7;
+}
+
+.btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+  // color: rgba(247, 241, 241, 0.65);
+  color: rgba(0, 0, 0, .85);
+}
+.btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+  display: inline-flex;
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+  text-decoration: none;
+}
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+  background-color: #e7e7e7;
+  // color:white;
+}
+
+.link-active{
+  font-style: italic;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
+}
