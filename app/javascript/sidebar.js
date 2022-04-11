@@ -27,8 +27,9 @@ $(document).on('turbolinks:load', function() {
   });
 
   function set_chat_height(){
-    if ($("#chat").height() > $("#story").height()) {
-      $('#chat').css('height', $("#story").height());
+    if ($('#chat').height() > $('#story').height()) {
+      $('#chat').css('height', $('#story').height());
+      $('#chat').css('border', '1px solid');
     }
   }
 

@@ -27,15 +27,16 @@
 }
 
 .dark-footer{
-  background-color: #bebebe;
-  color:#233b74;
+  background-color: #cacaca;
+  color:#000000;
+  // color:#233b74;
 }
 
 .text-dark-footer{
-  color: #233b74;
+  color: black;
   text-decoration: none;
   &:hover, &:focus {
-    color: #5c5c5c;
+    color: #f7f7f7;
   } 
 }
 
