@@ -1,3 +1,3 @@
 class TinyImage < ApplicationRecord
-  mount_uploader :file, ImagesUploader  
+  mount_uploader :file, ImagesUploader
 end
