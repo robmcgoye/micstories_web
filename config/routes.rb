@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  pages = %w(about terms privacy_policy)
+
   root 'pages#home'
-  # get 'pages/home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  pages.each do |page|
+    get "#{page}", to: "pages##{page}"
+  end
+  resources :pages, only: [:edit, :update, :show]
+  post 'tinymce_assets', to: 'tinymce_assets#create'
+
 end

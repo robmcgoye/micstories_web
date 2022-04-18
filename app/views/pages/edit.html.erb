@@ -1,0 +1,15 @@
+<div class="container">
+<h3><%= @page.name.capitalize %></h3>
+<%= form_with(model: @page) do |form| %>
+  <%= render "shared/error_messages", resource: @page %>
+
+  <div class="field form-group">
+    <%= form.text_area :body, class: "tinymce" %>
+    <%= tinymce %>
+  </div>
+
+  <div class="actions pt-2">
+    <%= form.submit "Update", class: "btn btn-sm btn-outline-secondary" %>
+  </div>
+<% end %>
+</div>

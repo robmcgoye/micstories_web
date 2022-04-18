@@ -26,9 +26,16 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+#=========================================
+gem 'tinymce-rails', '~> 5.10', '>= 5.10.2'
+gem 'carrierwave', '~> 2.2', '>= 2.2.2'
+gem 'mini_magick', '~> 4.11'
+# gem 'pagy', '~> 5.10', '>= 5.10.1'
+#=========================================
+
 group :production do
-  #  gem 'pg', '~> 1.2', '>= 1.2.3'
-  gem 'sqlite3', '~> 1.4'
+  gem 'pg', '~> 1.2', '>= 1.2.3'
+  # gem 'sqlite3', '~> 1.4'
 end
 
 group :development, :test do

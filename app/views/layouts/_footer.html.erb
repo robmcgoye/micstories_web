@@ -4,16 +4,19 @@
 
     <div class="row p-1">
       <div class="col text-center">
-        Terms & Conditions
+        <a href="mailto:mic@micstories.com" class="text-dark-footer">mic@micstories.com</a>
       </div>
       <div class="col text-center">
-        Privacy Policy
+        <%= link_to "Terms & Conditions", terms_path, class: "text-dark-footer" %>
+      </div>
+      <div class="col text-center">
+        <%= link_to "Privacy Policy", privacy_policy_path, class: "text-dark-footer" %>
       </div>
     </div>
     <div class="row pb-2" style="font-size:8pt">
       <div class="col text-start">
         © 2022 Copyright:
-        <a class="text-dark-footer" href="#">micstories.com</a>
+        <a class="text-dark-footer" href="\">micstories.com</a>
       </div>
       <div class="col text-end">
         Developed by: 
@@ -28,8 +31,7 @@
         <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-nd/3.0/us/88x31.png">
       </div>
       <div class="col align-self-center text-start light-footer">
-
-      All text is the property of the author.<br/>
+        All text is the property of the author.<br/>
         <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/" class="text-light-footer">
           This work is licensed under a Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License
         </a>

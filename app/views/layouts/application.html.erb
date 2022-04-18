@@ -6,13 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= tinymce_assets %>
+    <!-- , 'data-turbolinks-track': 'reload' //-->
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body class="d-flex flex-column h-100">
     <main class="flex-shrink-0">
       <%= render 'layouts/navbar' %>
+      <%= render 'layouts/messages' %>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>

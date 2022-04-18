@@ -6,10 +6,44 @@
 }
 @import 'bootstrap/dist/css/bootstrap';
 
+.navbar-bg{
+  background-color: #025328;
+}
+
 .sidebar{
-  height: calc(100vh - 155px);
+  // height: calc(100vh - 155px);
   width: 225px;
   min-width: 180px;
+  background-color: #F5FBF5;
+  // # F7FAF7 F5FBF5
+}
+
+.sidebar-btn{
+  background-color: #025328;
+  color: whitesmoke;
+}
+.sidebar-btn:hover {
+  color: rgba(0, 0, 0, .85);
+  background-color: #94C78F;
+}
+
+#story{
+  border: 1px solid;
+}
+
+#chat{
+  border: 1px solid;
+  background-color: #F5FBF5;
+  // background-color: #c5c5c5;
+}
+
+#chat_header{
+  background-color: #025328;
+  color: whitesmoke;
+}
+
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .light-footer{
@@ -22,12 +56,14 @@
   color:  black;
   text-decoration: none;
   &:hover, &:focus {
-    color: #5c5c5c;
+    color: #94C78F;
   } 
 }
 
 .dark-footer{
-  background-color: #cacaca;
+  // background-color: #cacaca;
+  // background-color: #79C971;
+  background-color: #94C78F;
   color:#000000;
   // color:#233b74;
 }
@@ -42,11 +78,7 @@
 
 .scroll {
     overflow-y: auto !important;
-    height: calc(100vh - 155px);
-}
-
-.scroll2 {
-    overflow-y: auto !important;
+    // height: calc(100vh - 155px);
 }
 
 .dropdown-toggle { outline: 0; }
