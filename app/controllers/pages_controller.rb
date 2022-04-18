@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :require_admin_user, only: [:edit, :update]
   before_action :set_page, only: [:edit, :update, :show]
 
   def home

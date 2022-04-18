@@ -23,6 +23,14 @@
         <li class="nav-item">
           <a class="navbar-text" href="mailto:mic@micstories.com">mic@micstories.com</a>
         </li>
+
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
+          </li>
+        <% end %>
+
+
       </ul>
     </div>
   </div>
