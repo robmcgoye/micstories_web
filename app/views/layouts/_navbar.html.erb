@@ -20,17 +20,17 @@
             <li><a class="dropdown-item" href="#">{ADMIN} Add Story</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="navbar-text" href="mailto:mic@micstories.com">mic@micstories.com</a>
-        </li>
 
+      </ul>
+      <ul class="navbar-nav ml-auto p-1">
+        <li class="nav-item">
+          <a class="nav-link active" href="mailto:mic@micstories.com">mic@micstories.com</a>            
+        </li>
         <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
+          <li class="nav-item ps-2">
+            <%= link_to "Logout", logout_path, class: "btn btn-sm btn-outline-light", method: :delete %>
           </li>
         <% end %>
-
-
       </ul>
     </div>
   </div>
