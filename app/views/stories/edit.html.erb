@@ -1,0 +1,16 @@
+
+
+<div class="container py-3">
+  <div class="card mb-3 shadow-lg rounded border">
+    <div class="card-body text-dark">
+      <h4>Editing Story</h4>
+      <%= render 'form', story: @story %>
+      <div class="btn-group p-2">
+        <%= link_to "Delete", @story, class: "btn btn-sm btn-outline-dark", 
+                    method: :delete, 
+                    data: { confirm: "Are you sure? This will delete ALL characters, chats, parts, and chapters." } %>
+        <%= link_to "Show", @story, class: "btn btn-sm btn-outline-dark" %> 
+      </div>
+    </div>
+  </div>
+</div>

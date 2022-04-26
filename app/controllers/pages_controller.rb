@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :require_admin_user, only: [:edit, :update]
-  before_action :set_page, only: [:edit, :update, :show]
+  before_action :get_page, only: [:edit, :update, :show]
 
   def home
   end
@@ -39,7 +39,7 @@ class PagesController < ApplicationController
       Page.find_by_name(page_name)
     end
 
-    def set_page
+    def get_page
       @page = Page.find(params[:id])
     end
 

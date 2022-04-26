@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :stories do
+    resources :chapters, :characters
+  end
+
   pages = %w(about terms privacy_policy)
 
   root 'pages#home'

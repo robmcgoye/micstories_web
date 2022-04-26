@@ -1,0 +1,42 @@
+<div class="d-flex flex-row justify-content-center">
+  <%= render 'sidebar', story: @story %>
+  <div class="col-lg p-1" id="view_panel">
+    <button id="sidebarCollapse" type="button" class="btn rounded-pill shadow-sm px-1 mb-2 sidebar-btn">
+      <i id="sidebar_button_icon" class="bi bi-file-excel"></i><small class="p-1 text-uppercase font-weight-bold">
+      Table of Contents</small>
+    </button>
+    <div class="album py-2">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+
+          <div id="story_col" class="container">
+            
+            <div id="story_header" class="pb-1" style="width: 100%; float: none; margin-left: auto; margin-right: auto;">
+              <% if @story.header_picture.present? %>
+                <%= image_tag @story.header_picture_url, 
+                        style: "width: 100%; height: 100%;" %>
+              <% end %>
+              <h4><%= @story.long_title %></h4>
+              <small><%= @story.author %></small>
+              <h6>Chapter ? Part ?</h6>
+            </div>
+
+            
+            <%= render 'story' %>
+          </div>
+          
+          <div id="chat_col" class="container">
+          <!-- font-family:arial;font-size:12px; //-->
+          <div id="chat_header" class="p-2">
+            <strong>
+              Doc's Place Chat<br>©2008 by Michel Grover<br>Chapter 1 - Part 1<br>Summer-Fall 2007
+            </strong>
+            <hr>
+            </div>
+            <%= render 'chat' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

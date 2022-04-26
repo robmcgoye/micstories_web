@@ -15,9 +15,33 @@
             Stories
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Doc's Place</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">{ADMIN} Add Story</a></li>
+            <% item_in_list = false %>
+            <% @stories.each do |story| %>
+              <% if story.published %>
+                <li>
+                  <%= link_to story.short_title, story, class: "dropdown-item" %>
+                </li>
+                <% item_in_list = true %>
+              <% elsif admin_user? %>
+                <li>
+                  <%= link_to story, class: "dropdown-item unpublished-nav-item" do %>
+                    <i class="bi bi-journal-minus"></i> <%= story.short_title %>
+                  <% end %>
+                </li>
+                <% item_in_list = true %>
+              <% end %>
+            <% end %>
+            <% if !item_in_list %>
+              <li> No Stories </li>
+            <% end %>
+            <% if admin_user? %>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to new_story_path, class: "dropdown-item" do %>
+                  <i class="bi bi-journal-plus"></i> New Story
+                <% end %>
+              </li>
+            <% end %>
           </ul>
         </li>
 

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :admin_user?
+  before_action :load_stories
   
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -21,6 +22,11 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "You must be an admin to perform that action"
       redirect_to root_path      
     end
+  end
+
+  private
+  def load_stories
+    @stories = Story.all
   end
 
 end

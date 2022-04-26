@@ -39,12 +39,14 @@ $(document).ready (function() {
       $('#chat').css('height', (max_height - $('#chat_header').height()));
       $('#chat').css('border', '1px solid');
     // }
-    let side_height = $('#sidebarCollapse').height() + max_height;
+    let side_height = $('#sidebarCollapse').height() + max_height + 50;
     
     // console.log(`max height = ${ max_height }`);
     // console.log(`button height = ${ $('#sidebarCollapse').height() }`);   
     // console.log(`sidebar height = ${ side_height }`);
-    $('#sidebar').css('height', side_height);
+    if (side_height > $('#sidebar').height()){
+      $('#sidebar').css('height', side_height);
+    }
   }
 
   $(window).resize(function(){

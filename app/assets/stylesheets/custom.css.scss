@@ -10,21 +10,32 @@
   background-color: #025328;
 }
 
+.unpublished-nav-item{
+  font-style: italic;
+}
+
 .sidebar{
+  position: sticky;
   // height: calc(100vh - 155px);
-  width: 225px;
-  min-width: 180px;
+  width: 230px;
+  // min-width: 225px;
   background-color: #F5FBF5;
+  // text-overflow: ellipsis;
   // # F7FAF7 F5FBF5
 }
 
 .sidebar-btn{
   background-color: #025328;
+  border: 2px solid #025328;
+
   color: whitesmoke;
 }
 .sidebar-btn:hover {
-  color: rgba(0, 0, 0, .85);
-  background-color: #94C78F;
+  color: #025328;
+  // border: 2px solid #025328;
+  // color: rgba(0, 0, 0, .85);
+  background-color: whitesmoke;
+  // background-color: #94C78F;
 }
 
 #story{
