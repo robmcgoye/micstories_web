@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :stories do
-    resources :chapters, :characters
-  end
-
   pages = %w(about terms privacy_policy)
+
+  resources :stories, except: [:index, :show], shallow: true do
+    resources :chapters, except: [:index, :show], shallow: true do
+      resources :parts, except: :index  
+    end
+    resources :characters, except: :show
+  end
+  # resources :chapters do
+  #   resources :parts
+  # end
+  # resources :chats
 
   root 'pages#home'
   pages.each do |page|

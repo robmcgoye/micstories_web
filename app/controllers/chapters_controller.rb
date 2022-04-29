@@ -1,8 +1,9 @@
 class ChaptersController < ApplicationController
-  before_action :set_story, only: %i[ new edit update create destroy]
-
+  before_action :require_admin_user
+  before_action :set_story, only: [ :new, :create ]
+  before_action :set_chapter, only: [ :edit, :update, :destroy ]
+   
   def edit
-    @chapter = @story.chapters.find(params[:id])
   end
 
   def new
@@ -13,30 +14,35 @@ class ChaptersController < ApplicationController
     @chapter = @story.chapters.build( chapter_params )
     if @chapter.save
       flash[:notice] = "The chapter was successfully created"
-      redirect_to story_url(@story)
+      redirect_to back_to_story_path(@story.id)
     else
       render :new
     end
   end
 
   def update
-    if @story.chapters.find(params[:id]).update( chapter_params )
+    if @chapter.update( chapter_params )
       flash[:notice] = "The chapter was successfully updated"
-      redirect_to story_url(@story)
+      redirect_to back_to_story_path(@story.id)
     else
       render :edit
     end
   end
 
   def destroy
-    @story.chapters.find(params[:id]).destroy
+    @chapter.destroy
     flash[:notice] = "The chapter was successfully deleted"
-    redirect_to story_url(@story)
+    redirect_to back_to_story_path(@story.id)
   end
 
   private
     def set_story
       @story = Story.find(params[:story_id])
+    end
+
+    def set_chapter
+      @chapter = Chapter.find(params[:id])
+      @story = Story.find(@chapter.story_id)
     end
 
     def chapter_params

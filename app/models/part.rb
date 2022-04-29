@@ -6,6 +6,7 @@ class Part < ApplicationRecord
   validates :title, presence: true
   validates :chat_title, presence: true
   validates :content, presence: true
+  validates :publish_at, presence: true, on_or_after_today: true
   validates :sort_order, numericality: true
-  validates_date :publish_at, on: :create, on_or_after: :today
+
 end

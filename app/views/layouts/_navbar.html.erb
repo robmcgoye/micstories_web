@@ -19,12 +19,12 @@
             <% @stories.each do |story| %>
               <% if story.published %>
                 <li>
-                  <%= link_to story.short_title, story, class: "dropdown-item" %>
+                  <%= link_to story.short_title, back_to_story_path(story.id), class: "dropdown-item" %>
                 </li>
                 <% item_in_list = true %>
               <% elsif admin_user? %>
                 <li>
-                  <%= link_to story, class: "dropdown-item unpublished-nav-item" do %>
+                  <%= link_to back_to_story_path(story.id), class: "dropdown-item unpublished-nav-item" do %>
                     <i class="bi bi-journal-minus"></i> <%= story.short_title %>
                   <% end %>
                 </li>

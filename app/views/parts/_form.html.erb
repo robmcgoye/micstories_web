@@ -1,0 +1,66 @@
+<%= form_with(model: part, url: post_url) do |form| %>
+  <%= render 'shared/error_messages', resource: part %>
+
+   <div class="row justify-content-end">
+   <div class="col-10">
+      <div class="form-check form-switch">
+        <%= form.check_box :published, 
+                  class: "form-check-input", 
+                  id: "flexSwitchCheckPublished" %>
+        <%= form.label :published,  class: "form-check-label", 
+                      for: "flexSwitchCheckPublished" %>        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :sort_order %>
+    </div>
+    <div class="col field form-group">
+      <%= form.number_field :sort_order, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :publish_at %>
+    </div>
+    <div class="col field form-group">
+      <%= form.date_field :publish_at, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :title %>
+    </div>
+    <div class="col field form-group">
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+  </div>  
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :subtitle %>
+    </div>
+    <div class="col field form-group">
+      <%= form.text_field :subtitle, class: "form-control" %>
+    </div>
+  </div>  
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :chat_title %>
+    </div>
+    <div class="col field form-group">
+      <%= form.text_field :chat_title, class: "form-control" %>
+    </div>
+  </div>  
+  <div class="row pt-2">
+    <div class="col field form-group">
+      <%= form.text_area :content, class: "tinymce" %>
+      <%= tinymce %>
+    </div>
+  </div>  
+  <div class="actions pt-2">
+    <%= form.submit class: "btn btn-sm btn-outline-dark" %>
+  </div>
+<% end %>

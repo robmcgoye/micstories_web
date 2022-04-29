@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :admin_user?
   before_action :load_stories
-  
+  include StoriesHelper
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end 

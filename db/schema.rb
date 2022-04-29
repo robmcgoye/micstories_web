@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_174513) do
+ActiveRecord::Schema.define(version: 2022_04_26_183028) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "story_id", null: false
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_04_22_174513) do
     t.integer "sort_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "story_id"
+    t.index ["story_id"], name: "index_characters_on_story_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2022_04_22_174513) do
   end
 
   add_foreign_key "chapters", "stories"
+  add_foreign_key "characters", "stories"
   add_foreign_key "chats", "characters"
   add_foreign_key "chats", "parts"
   add_foreign_key "parts", "chapters"

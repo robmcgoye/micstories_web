@@ -6,6 +6,16 @@
 }
 @import 'bootstrap/dist/css/bootstrap';
 
+.part_story{
+  color: green;
+  font-weight: bold;
+}
+
+#story_header h6{
+  font-size: 1em;
+  color: blue;
+}
+
 .navbar-bg{
   background-color: #025328;
 }
@@ -134,6 +144,15 @@ body{
   margin-left: 1.25rem;
   text-decoration: none;
 }
+.btn-toggle-nav-text {
+  display: inline-flex;
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #e7e7e7;

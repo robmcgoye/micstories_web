@@ -1,0 +1,76 @@
+<div id="sidebar" class="col-xs sidebar flex-shrink-0 p-3 scroll">
+    <span class="fs-5 fw-semibold"> 
+      <%= story.short_title %>
+    </span>
+    <% if admin_user? %>
+      <%= link_to edit_story_path(story), class: "btn"  do %>
+        <i class="bi bi-pencil"></i>
+      <% end %>
+    <% end %>
+
+  <ul class="list-unstyled ps-0">
+    <% if admin_user? %>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+          Actions
+        </button>
+        <div class="collapse" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+              <%= link_to story_characters_path(story), class: "link-dark rounded"  do %>
+                <i class="bi bi-people pe-1"></i> Characters
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_story_chapter_path(story), 
+              class: "#{request.path == new_story_chapter_path(story)  ? "link-dark rounded link-active" : "link-dark rounded"}"  do %>
+                <i class="bi bi-folder-plus pe-1"></i> Add a Chapter
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </li>
+    <% end %>
+
+    <% if story.chapters.present? %>
+      <% story.chapters.each do |chapter| %>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#dashboard-collapse" 
+                    aria-expanded="<%= @chapter.id == chapter.id %>">
+            <%= chapter.title %>
+          </button>
+          <% if admin_user? %>
+            <%= link_to edit_chapter_path(chapter), class: "btn"  do %>
+              <i class="bi bi-pencil"></i>
+            <% end %>
+          <% end %>          
+          <div class="<%= @chapter.id == chapter.id ? "collapse show" : "collapse" %>" id="dashboard-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
+              <% if admin_user? %>
+                <%= link_to new_chapter_part_path(chapter), class: "link-dark rounded" do %>
+                  <i class="bi bi-file-earmark-plus"></i>Add a Part
+                <% end %>
+              <% end %>
+              <% if chapter.parts.present? %>
+                <% chapter.parts.each do |part| %>
+                  <li>
+                    <% if part.id == @part.id %>
+                      <span class="btn-toggle-nav-text"><%= part.title %></span>
+                    <% else %>
+                      <%= link_to part_path(part), class: "link-dark rounded" do %>
+                        <%= part.title %>
+                      <% end %>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

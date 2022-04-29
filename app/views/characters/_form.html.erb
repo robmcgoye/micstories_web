@@ -1,0 +1,40 @@
+<%= form_with(model: character, url: post_url) do |form| %>
+  <%= render 'shared/error_messages', resource: character %>
+
+  <div class="row">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :sort_order %>
+    </div>
+    <div class="col field form-group">
+      <%= form.number_field :sort_order, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :full_name %>
+    </div>
+    <div class="col field form-group">
+      <%= form.text_field :full_name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-center">
+      <%= form.label :chat_name %>
+    </div>
+    <div class="col field form-group">
+      <%= form.text_field :chat_name, class: "form-control" %>
+    </div>
+  </div>  
+  <div class="row pt-2">
+    <div class="col-2 d-flex align-items-top">
+      <%= form.label :description %>
+    </div>
+    <div class="col field form-group">
+       <%= form.text_area :description, size: "70x5", class: "form-control" %>
+    </div>
+  </div>  
+  <div class="actions pt-2">
+    <%= form.submit class: "btn btn-sm btn-outline-dark" %>
+  </div>
+<% end %>

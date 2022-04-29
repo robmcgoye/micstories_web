@@ -4,6 +4,6 @@ class Chat < ApplicationRecord
 
   validates :post, presence: true
   validates :sort_order, numericality: true
-  validates_date :publish_at, on: :create, on_or_after: :today
+  validates :publish_at, presence: true, on_or_after_today: true
 
 end

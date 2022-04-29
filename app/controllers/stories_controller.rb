@@ -1,69 +1,44 @@
 class StoriesController < ApplicationController
-  before_action :set_story, only: %i[ show edit update destroy ]
-  before_action :require_admin_user, only: [:new, :edit, :update, :destroy]
-  # GET /stories or /stories.json
-  def index
-    @stories = Story.all
-  end
+  before_action :set_story, only: %i[ edit update destroy ]
+  before_action :require_admin_user
 
-  # GET /stories/1 or /stories/1.json
-  def show
-  end
-
-  # GET /stories/new
   def new
     @story = Story.new
   end
 
-  # GET /stories/1/edit
   def edit
   end
 
-  # POST /stories or /stories.json
   def create
     @story = Story.new(story_params)
-
-    respond_to do |format|
-      if @story.save
-        format.html { redirect_to story_url(@story), notice: "Story was successfully created." }
-        format.json { render :show, status: :created, location: @story }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
-      end
+    if @story.save
+      flash[:notice] = "Story was successfully created."
+      redirect_to back_to_story_path(@story.id)
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /stories/1 or /stories/1.json
   def update
-    respond_to do |format|
       if @story.update(story_params)
-        format.html { redirect_to story_url(@story), notice: "Story was successfully updated." }
-        format.json { render :show, status: :ok, location: @story }
+        flash[:notice] = "Story was successfully updated."
+        redirect_to back_to_story_path(@story.id)
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
-  # DELETE /stories/1 or /stories/1.json
   def destroy
     @story.destroy
-
-    respond_to do |format|
-      format.html { redirect_to stories_url, notice: "Story was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Story was successfully destroyed."
+    redirect_to about_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_story
       @story = Story.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def story_params
       params.require(:story).permit(:long_title, :short_title, :header_picture, 
                                     :published, :author, :sort_order)
