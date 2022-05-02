@@ -5,4 +5,7 @@ class Character < ApplicationRecord
   
   validates :chat_name, presence: true
   validates :sort_order, numericality: true
+
+  default_scope { order(sort_order: :asc) }
+  
 end

@@ -4,7 +4,7 @@
       <h4>New chapter for <%= @story.short_title %></h4>
       <%= render 'form', chapter: @chapter, post_url: story_chapters_path(@story) %>
       <div class="btn-group p-2">
-        <%= link_to "Back to Story", back_to_story_path(@story.id), class: "btn btn-sm btn-outline-dark" %> 
+        <%= link_to t('show_story'), back_to_story_path(@story.id), class: "btn btn-sm btn-outline-dark" %> 
       </div>
     </div>
   </div>

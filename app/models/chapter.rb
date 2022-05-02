@@ -5,4 +5,7 @@ class Chapter < ApplicationRecord
 
   validates :title, presence: true
   validates :sort_order, numericality: true
+
+  default_scope { order(sort_order: :asc) }
+  
 end

@@ -1,6 +1,14 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[ edit update destroy ]
-  before_action :require_admin_user
+  before_action :require_admin_user, except: :index
+
+  def index
+    if admin_user?
+      @stories = Story.all
+    else
+      @stories = Story.published_stories
+    end
+  end
 
   def new
     @story = Story.new
@@ -31,7 +39,7 @@ class StoriesController < ApplicationController
   def destroy
     @story.destroy
     flash[:notice] = "Story was successfully destroyed."
-    redirect_to about_path
+    redirect_to stories_path
   end
 
   private

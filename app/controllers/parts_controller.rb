@@ -1,13 +1,15 @@
 class PartsController < ApplicationController
   before_action :require_admin_user, except: [:show]
   before_action :set_chapter, only: [:new, :create]
-  before_action :set_part, only: [:show, :edit, :update, :destroy]
-
-  # def index
-  #   @parts = @chapter.parts
-  # end
+  before_action :set_part, only: [:edit, :update, :destroy]
 
   def show
+    if admin_user?
+      @part = Part.find(params[:id])
+    else
+      @part = Part.published_part(params[:id])
+    end
+    set_parents
   end
 
   def new
@@ -49,12 +51,20 @@ class PartsController < ApplicationController
       @story = Story.find(@chapter.story_id)
     end
 
+    def set_parents
+      if @part.present?
+        @chapter = Chapter.find(@part.chapter_id)
+        @story = Story.find(@chapter.story_id)    
+        cookie_name = "story_#{@story.id}"
+        cookies[cookie_name] = @part.id
+      else
+        redirect_to stories_path
+      end
+    end
+
     def set_part
       @part = Part.find(params[:id])
-      @chapter = Chapter.find(@part.chapter_id)
-      @story = Story.find(@chapter.story_id)
-      cookie_name = "story_#{@story.id}"
-      cookies[cookie_name] = params[:id]
+      set_parents
     end
 
     # Only allow a list of trusted parameters through.

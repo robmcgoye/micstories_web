@@ -3,7 +3,7 @@
       <%= story.short_title %>
     </span>
     <% if admin_user? %>
-      <%= link_to edit_story_path(story), class: "btn"  do %>
+      <%= link_to edit_story_path(story), class: "btn btn-sm btn-light"  do %>
         <i class="bi bi-pencil"></i>
       <% end %>
     <% end %>
@@ -42,7 +42,7 @@
             <%= chapter.title %>
           </button>
           <% if admin_user? %>
-            <%= link_to edit_chapter_path(chapter), class: "btn"  do %>
+            <%= link_to edit_chapter_path(chapter), class: "btn btn-sm btn-light"  do %>
               <i class="bi bi-pencil"></i>
             <% end %>
           <% end %>          
@@ -51,7 +51,7 @@
 
               <% if admin_user? %>
                 <%= link_to new_chapter_part_path(chapter), class: "link-dark rounded" do %>
-                  <i class="bi bi-file-earmark-plus"></i>Add a Part
+                  <i class="bi bi-file-earmark-plus pe-1"></i>Add a Part
                 <% end %>
               <% end %>
               <% if chapter.parts.present? %>

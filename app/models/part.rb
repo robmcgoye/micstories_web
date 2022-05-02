@@ -9,4 +9,10 @@ class Part < ApplicationRecord
   validates :publish_at, presence: true, on_or_after_today: true
   validates :sort_order, numericality: true
 
+  default_scope { order(sort_order: :asc) }
+
+  scope :published_part, ->(id) { joins(chapter: :story).where(
+    "parts.id = :id AND stories.published = :published AND parts.published = :published AND parts.publish_at <= :today", 
+    {id: id, published: true, today: Date.today}) }
+
 end

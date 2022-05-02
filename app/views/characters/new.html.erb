@@ -4,7 +4,7 @@
       <h4>New Character for <%= @story.short_title %></h4>
       <%= render 'form', character: @character, post_url: story_characters_path(@story) %>
       <div class="btn-group p-2">
-        <%= link_to "Back to the story", back_to_story_path(@story.id), class: "btn btn-sm btn-outline-dark" %>
+        <%= link_to t('show_story'), back_to_story_path(@story.id), class: "btn btn-sm btn-outline-dark" %>
         <%= link_to "All characters", story_characters_path(@story), class: "btn btn-sm btn-outline-dark" %> 
       </div>
     </div>

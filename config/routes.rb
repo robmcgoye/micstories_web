@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   pages = %w(about terms privacy_policy)
 
-  resources :stories, except: [:index, :show], shallow: true do
+  resources :stories, except: :show, shallow: true do
     resources :chapters, except: [:index, :show], shallow: true do
       resources :parts, except: :index  
     end
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # end
   # resources :chats
 
-  root 'pages#home'
+  root 'pages#about'
   pages.each do |page|
     get "#{page}", to: "pages##{page}"
   end

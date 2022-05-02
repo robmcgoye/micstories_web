@@ -12,4 +12,6 @@ class Story < ApplicationRecord
 
   default_scope { order(sort_order: :asc) }
 
+  scope :published_stories, -> { where("published = :published", {published: true}) }
+
 end

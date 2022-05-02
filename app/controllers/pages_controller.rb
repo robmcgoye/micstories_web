@@ -2,9 +2,6 @@ class PagesController < ApplicationController
   before_action :require_admin_user, only: [:edit, :update]
   before_action :get_page, only: [:edit, :update, :show]
 
-  def home
-  end
-
   def about
     @page = load_page(:about)
   end
