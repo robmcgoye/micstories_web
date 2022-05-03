@@ -1,7 +1,7 @@
 class Part < ApplicationRecord
   belongs_to :chapter
-  has_many :chats
-  accepts_nested_attributes_for :chats, allow_destroy: true
+  has_many :posts
+  accepts_nested_attributes_for :posts, allow_destroy: true
 
   validates :title, presence: true
   validates :chat_title, presence: true

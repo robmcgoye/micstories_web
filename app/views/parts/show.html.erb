@@ -8,24 +8,21 @@
     <div class="album py-2">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
-
-          <div id="story_col" class="container">
-            
+          <div id="story_col" class="container">            
             <div id="story_header" class="pb-1" style="width: 100%; float: none; margin-left: auto; margin-right: auto;">
               <% if @story.header_picture.present? %>
                 <%= image_tag @story.header_picture_url, 
                         style: "width: 100%; height: 100%;" %>
               <% end %>
               <h4 class="part_story"><%= @story.long_title %></h4>
-              <small><%= @story.author %></small>
+              <small><%= "#{@story.author} All rights reserved." %></small>
               <div class="row">
                 <div class="col">
                   <h6><%= "#{@chapter.title} | #{@part.title}" %></h6>
                   <h6><%= @part.subtitle %></h6>
                 </div>
                 <% if admin_user? %>
-                <div class="col d-flex align-self-end align-items-end flex-column">
-                  
+                  <div class="col d-flex align-self-end align-items-end flex-column">                  
                     <div class="btn-group">
                       <%= link_to edit_part_path(@part), class: "btn btn-sm btn-outline-dark" do %>
                         <i class="bi bi-pencil pe-1"></i>Edit
@@ -35,10 +32,8 @@
                           data: { confirm: "Are you sure? This will delete ALL chats in this part too." } do %>
                         <i class="bi bi-trash pe-1"></i>Delete
                       <% end %>
-                    </div>
-                    
-                  
-                </div>
+                    </div>                                      
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -47,20 +42,72 @@
                 <%= @part.content.html_safe %>
               <% end %>
             </div>
-          </div>
-          
+          </div>          
           <div id="chat_col" class="container">
-          <!-- font-family:arial;font-size:12px; //-->
-          <div id="chat_header" class="p-2">
-            <strong>
-              <%= "#{@story.short_title} Chat" %>
-              <br>©2008 by Michel Grover<br>
-              <%= "#{@chapter.title} | #{@part.title}" %><br>
-              <%= @part.chat_title %>
-            </strong>
-            <hr>
+            <div id="chat_header" class="p-2">            
+              <div class="row">
+                <div class="col">
+                  <strong>
+                    <%= "#{@story.short_title} Chat" %><br/>
+                    <%= @story.author %><br/>
+                    <%= "#{@chapter.title} | #{@part.title}" %><br/>
+                    <%= @part.chat_title %>
+                  </strong>
+                </div>
+                <% if admin_user? %>
+                  <div class="col d-flex align-self-end align-items-end flex-column">                  
+                    <div class="btn-group">
+                      <%= link_to new_part_post_path(@part), class: "btn btn-sm btn-outline-light" do %>
+                        <i class="bi bi-pencil pe-1"></i>Add a Post
+                      <% end %>
+                    </div>                                      
+                  </div>
+                <% end %>
+              </div>            
+              <hr>
             </div>
-            <%= render 'chat' %>
+            <div id="chat" class="container scroll">
+              <% posts_displayed = false %>
+              <% if @part.posts.present? %>
+                <% @part.posts.each do |post| %>
+                  <% continue = false %>
+                  <% if admin_user? %>
+                    <% continue = true %>
+                  <% elsif post.published? && post.publish_at <= Date.today %>
+                    <% continue = true %>
+                  <% end %>
+                  <% if continue %>
+                    <% posts_displayed = true %>
+                    <div class="card mt-2">
+                      <div class="card-body px-2 py-0">
+                        <p class="card-text">
+                          <div class="post_character pe-1">
+                            <%= post.character.chat_name %> : 
+                          </div>                          
+                          <% unless post.message.blank? %>
+                            <%= post.message.html_safe %>
+                          <% end %>
+                        </p>
+                      </div>
+                      <% if admin_user? %>
+                        <div class="card-footer">
+                          <div class="btn-group">
+                            <%= link_to edit_post_path(post), class: "btn btn-sm btn-outline-dark" do %>
+                              <i class="bi bi-pencil pe-1"></i>Edit
+                            <% end %>
+                            <%= link_to post_path(post), class: "btn btn-sm btn-outline-dark", 
+                                method: :delete, 
+                                data: { confirm: "Are you sure?" } do %>
+                              <i class="bi bi-trash pe-1"></i>Delete
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

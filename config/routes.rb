@@ -3,14 +3,16 @@ Rails.application.routes.draw do
 
   resources :stories, except: :show, shallow: true do
     resources :chapters, except: [:index, :show], shallow: true do
-      resources :parts, except: :index  
+      resources :parts, except: :index, shallow: true do
+        resources :posts, except: [:show, :index] 
+      end  
     end
     resources :characters, except: :show
   end
   # resources :chapters do
   #   resources :parts
   # end
-  # resources :chats
+  # 
 
   root 'pages#about'
   pages.each do |page|

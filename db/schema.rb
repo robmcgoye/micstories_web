@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_26_183028) do
+ActiveRecord::Schema.define(version: 2022_05_03_162936) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "story_id", null: false
@@ -33,19 +33,6 @@ ActiveRecord::Schema.define(version: 2022_04_26_183028) do
     t.index ["story_id"], name: "index_characters_on_story_id"
   end
 
-  create_table "chats", force: :cascade do |t|
-    t.integer "part_id", null: false
-    t.integer "character_id", null: false
-    t.boolean "published"
-    t.datetime "publish_at"
-    t.integer "sort_order"
-    t.text "post"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["character_id"], name: "index_chats_on_character_id"
-    t.index ["part_id"], name: "index_chats_on_part_id"
-  end
-
   create_table "pages", force: :cascade do |t|
     t.string "name"
     t.text "body"
@@ -65,6 +52,19 @@ ActiveRecord::Schema.define(version: 2022_04_26_183028) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chapter_id"], name: "index_parts_on_chapter_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "part_id", null: false
+    t.integer "character_id", null: false
+    t.boolean "published"
+    t.datetime "publish_at"
+    t.integer "sort_order"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_posts_on_character_id"
+    t.index ["part_id"], name: "index_posts_on_part_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_04_26_183028) do
 
   add_foreign_key "chapters", "stories"
   add_foreign_key "characters", "stories"
-  add_foreign_key "chats", "characters"
-  add_foreign_key "chats", "parts"
   add_foreign_key "parts", "chapters"
+  add_foreign_key "posts", "characters"
+  add_foreign_key "posts", "parts"
 end
