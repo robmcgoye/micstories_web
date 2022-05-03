@@ -30,6 +30,14 @@ class CreateStories < ActiveRecord::Migration[6.1]
       t.datetime :publish_date
       t.timestamps
     end
+
+    create_table :characters do |t|
+      t.string :full_name
+      t.string :chat_name
+      t.text :description
+      t.integer :sort_order
+      t.timestamps
+    end
     
     create_table :chats do |t|
       t.references :part, null: false, foreign_key: true
@@ -40,14 +48,5 @@ class CreateStories < ActiveRecord::Migration[6.1]
       t.text :post
       t.timestamps
     end
-
-    create_table :characters do |t|
-      t.string :full_name
-      t.string :chat_name
-      t.text :description
-      t.integer :sort_order
-      t.timestamps
-    end
-
   end
 end
