@@ -1,6 +1,6 @@
 class Chapter < ApplicationRecord
   belongs_to :story
-  has_many :parts
+  has_many :parts, dependent: :destroy
   accepts_nested_attributes_for :parts, allow_destroy: true
 
   validates :title, presence: true

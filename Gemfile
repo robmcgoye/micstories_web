@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'tinymce-rails', '~> 5.10', '>= 5.10.2'
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 gem 'mini_magick', '~> 4.11'
+gem 'mysql2', '~> 0.5.4'
 # gem 'validates_timeliness', '~> 5.0'
 # gem 'pagy', '~> 5.10', '>= 5.10.1'
 #=========================================

@@ -1,6 +1,6 @@
 class Story < ApplicationRecord
-  has_many :chapters
-  has_many :characters
+  has_many :chapters, dependent: :destroy
+  has_many :characters, dependent: :destroy
   accepts_nested_attributes_for :chapters, allow_destroy: true
   accepts_nested_attributes_for :characters, allow_destroy: true
 

@@ -7,7 +7,10 @@ class PartsController < ApplicationController
     if admin_user?
       @part = Part.find(params[:id])
     else
-      @part = Part.published_part(params[:id])
+      @part = Part.published_part(params[:id]).take
+      if !@part.present?
+        @part = Part.published_parts.take
+      end
     end
     set_parents
   end

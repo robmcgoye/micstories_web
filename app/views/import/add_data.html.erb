@@ -1,0 +1,24 @@
+
+<p>DONE!!!</P>
+
+<p>
+  <%= "Imported Stories: #{@records_imported[:stories]}" %>
+</p>
+<p>
+  <%= "Imported characters: #{@records_imported[:characters]}" %>
+</p>
+<p>
+  <%= "Imported Chapters: #{@records_imported[:chapters]}" %>
+</p>
+<p>
+  <%= "Imported parts: #{@records_imported[:parts]}" %>
+</p>
+<p>
+  <%= "Imported posts: #{@records_imported[:posts]}" %>
+</p>
+<p>
+  <%= "Skipped posts: #{@records_imported[:skipped]}" %>
+  <% if @records_imported[:skipped] > 0 %>
+    <%# byebug %>
+  <% end %>
+</p>

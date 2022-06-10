@@ -1,6 +1,6 @@
 class Character < ApplicationRecord
   belongs_to :story
-  has_many :posts
+  has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :posts, allow_destroy: true
   
   validates :chat_name, presence: true

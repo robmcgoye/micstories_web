@@ -1,0 +1,51 @@
+
+<div class="container">
+  <p>Import data from old mysql database "Doc's Place"</P>
+
+  <p>NOTES</p>
+  <ul>
+    <li>Should only be done once preferably to an empty database.</li>
+    <li>ALL records imported will be set as published.</li>
+    <li>Since ALL of the publish at times have past. All of the imported records will be set to the current day.</li>
+    <li>No records marked as deleted will be imported.</li>
+    <li>ALL child records of parent items marked as deleted will not be imported.</li>
+
+  </ul>
+  <%= form_for :mysql_options, url: process_url do |form| %>
+
+    <div class="row pt-2">
+      <div class="col-2 d-flex align-items-center">
+        <%= form.label "Host" %>
+      </div>
+      <div class="col field form-group">
+        <%= form.text_field :host, class: "form-control" %>
+      </div>
+    </div>  
+    <div class="row pt-2">
+      <div class="col-2 d-flex align-items-center">
+        <%= form.label "database" %>
+      </div>
+      <div class="col field form-group">
+        <%= form.text_field :database, placehoder: "micstories", class: "form-control" %>
+      </div>
+    </div>  
+    <div class="row pt-2">
+      <div class="col-2 d-flex align-items-center">
+        <%= form.label "user" %>
+      </div>
+      <div class="col field form-group">
+        <%= form.text_field :user, class: "form-control" %>
+      </div>
+    </div>  
+    <div class="row pt-2">
+      <div class="col-2 d-flex align-items-center">
+        <%= form.label "password" %>
+      </div>
+      <div class="col field form-group">
+        <%= form.password_field :password, class: "form-control" %>
+      </div>
+    </div>    
+    <div class="actions pt-2">
+      <%= form.submit "Import Stories", class: "btn btn-sm btn-outline-dark" %>
+    </div>
+  <% end  %>

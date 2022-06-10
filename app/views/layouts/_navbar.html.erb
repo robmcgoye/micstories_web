@@ -25,7 +25,7 @@
               <% elsif admin_user? %>
                 <li>
                   <%= link_to back_to_story_path(story.id), class: "dropdown-item unpublished-nav-item" do %>
-                    <i class="bi bi-journal-minus"></i> <%= story.short_title %>
+                    <i class="bi bi-braces-asterisk"></i> <%= story.short_title %>
                   <% end %>
                 </li>
                 <% item_in_list = true %>

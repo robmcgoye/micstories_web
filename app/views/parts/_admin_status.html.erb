@@ -1,0 +1,9 @@
+<%# resource: %>
+<i class="bi bi-sort-numeric-down ps-1"></i>
+<%= resource.sort_order %>
+<% if !resource.published %>
+  <i class="bi bi-asterisk ps-1"></i>
+<% end %>
+<% if resource.publish_at > Date.today %>
+  <i class="bi bi-calendar ps-1"></i>
+<% end %>
