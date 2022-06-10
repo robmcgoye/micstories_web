@@ -19,6 +19,7 @@ class ImportController < ApplicationController
     end
     if client.present? && !client.closed?
       @records_imported = {stories: 0, characters: 0, chapters: 0, parts: 0, posts: 0, skipped: 0}
+      col_last_sort = { parts: 0, posts: 0 }
       @skipped_records = []
       # get all of the stories to import (currently it is 1)
       mysql_stories = client.query("SELECT * FROM stories")    
@@ -48,10 +49,10 @@ class ImportController < ApplicationController
                     title: convert_string(cr["chapterTitle"]),
                     subtitle: "",
                     sort_order: cr["isort"]
-                  )
+                  )              
           @records_imported[:chapters] += 1            
           # get all of the parts for this chapter.
-          mysql_parts = client.query("SELECT * FROM parts WHERE chapterID = #{cr["iID"]} ORDER BY isort ASC")
+          mysql_parts = client.query("SELECT * FROM parts WHERE chapterID = #{cr["iID"]} ORDER BY dtspost ASC")
           mysql_parts.each do |pr|
 
             if convert_string(pr["partTitle"]).blank?
@@ -65,11 +66,12 @@ class ImportController < ApplicationController
                     chat_title: convert_string(pr["posttitle"]),
                     publish_at: get_published_at(pr["dtspost"]),
                     content: convert_string(pr["content"]),
-                    sort_order: pr["isort"]
+                    sort_order: col_last_sort[:parts]
                   )
+            col_last_sort[:parts] += 5  
             @records_imported[:parts] += 1
             # get all of the posts for this part.
-            mysql_posts = client.query("SELECT * FROM posts WHERE partid = #{pr["iID"]} ORDER BY isort ASC")
+            mysql_posts = client.query("SELECT * FROM posts WHERE partid = #{pr["iID"]} ORDER BY dtspost ASC")
             mysql_posts.each do |ptr|
               # lookup the mysql people.postname
               post_name = ""
@@ -83,8 +85,9 @@ class ImportController < ApplicationController
                         published: :true,
                         publish_at: get_published_at(ptr["dtspost"]),
                         character_id: get_id_from_postname(post_name),
-                        sort_order: ptr["isort"]                    
+                        sort_order: col_last_sort[:posts]                   
                       )
+                col_last_sort[:posts] += 5  
                 @records_imported[:posts] += 1
               else
                 @records_imported[:skipped] += 1
