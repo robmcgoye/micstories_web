@@ -94,7 +94,9 @@ class ImportController < ApplicationController
                 @skipped_records << ptr
               end
             end
+            col_last_sort[:posts] = 0
           end 
+          col_last_sort[:parts] = 0
         end
       end 
       client.close
