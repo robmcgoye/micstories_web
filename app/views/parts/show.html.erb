@@ -31,10 +31,13 @@
                 <% end %>
               </div>
             </div>
+          <!-- d-flex justify-content-between pt-1//-->
             <div id="story" class="container">
+              <%= render 'next_prev', part: @part %>
               <% unless @part.content.blank? %>
                 <%= @part.content.html_safe %>
-              <% end %>
+              <% end %>  
+              <%= render 'next_prev', part: @part %>
             </div>
           </div>          
           <div id="chat_col" class="container">

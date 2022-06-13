@@ -1,0 +1,27 @@
+<div class="row justify-content-center py-1">
+  <div class="btn-group">
+
+    <% prev_part = get_prev_part(part) %>
+    <% if prev_part.present? %>
+      <%= link_to part_path(prev_part), class: "btn btn-sm btn-outline-dark" do %>
+        <%= render 'prev_link' %>
+      <% end %>
+    <% else %>
+      <button type="button" class="btn btn-sm btn-outline-dark" disabled>
+        <%= render 'prev_link' %>
+      </button>
+    <% end %>
+
+    <% next_part = get_next_part(part) %>
+    <% if next_part.present? %>
+      <%= link_to part_path(next_part), class: "btn btn-sm btn-outline-dark" do %>
+        <%= render 'next_link' %>
+      <% end %>
+    <% else %>
+      <button type="button" class="btn btn-sm btn-outline-dark" disabled>
+        <%= render 'next_link' %>
+      </button>
+    <% end %>
+
+  </div>
+</div>

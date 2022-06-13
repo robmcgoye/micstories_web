@@ -4,13 +4,11 @@ class PartsController < ApplicationController
   before_action :set_part, only: [:edit, :update, :destroy]
 
   def show
-    if admin_user?
-      @part = Part.find(params[:id])
-    else
-      @part = Part.published_part(params[:id]).take
-      if !@part.present?
-        @part = Part.published_parts.take
-      end
+    @part = Part.find(params[:id])
+    if !admin_user? && @part.present?
+      if !@part.published && @part.publish_at >= Date.today
+        @part = Part.published_parts(@part.chapter.story_id).take
+      end 
     end
     set_parents
   end

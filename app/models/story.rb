@@ -8,7 +8,7 @@ class Story < ApplicationRecord
 
   validates :long_title, presence: true
   validates :short_title, presence: true, length: {maximum: 25}
-  validates :sort_order, numericality: true
+  validates :sort_order, numericality: true, uniqueness: true
 
   default_scope { order(sort_order: :asc) }
 
