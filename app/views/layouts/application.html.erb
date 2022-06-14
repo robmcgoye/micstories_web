@@ -4,7 +4,11 @@
     <title>
     <%= if content_for?(:title) then yield(:title) + ' | ' end %>
     Mic's Stories </title>
+    <% if get_meta_description.present? %>
+      <meta name="description" content="<%= get_meta_description %>">
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

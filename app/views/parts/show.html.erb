@@ -1,4 +1,4 @@
-<% provide(:title, @story.short_title) %>
+<% provide(:title, "#{@story.short_title} | #{@chapter.title} | #{@part.title}") %>
 <div class="d-flex flex-row justify-content-center">
   <%= render 'sidebar', story: @story %>
   <div class="col-lg p-1" id="view_panel">

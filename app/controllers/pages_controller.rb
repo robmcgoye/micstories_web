@@ -2,6 +2,16 @@ class PagesController < ApplicationController
   before_action :require_admin_user, only: [:edit, :update]
   before_action :get_page, only: [:edit, :update, :show]
 
+  def index
+    spotlight_story = get_spotlight_story
+    if spotlight_story.present?
+      redirect_to back_to_story_path(spotlight_story.id) 
+    else
+      @page = load_page(:about)
+      render :about
+    end
+  end
+
   def about
     @page = load_page(:about)
   end
@@ -45,4 +55,9 @@ class PagesController < ApplicationController
       params.require(:page).permit(:body)
     end
 
+    def get_spotlight_story
+      if Setting.take.present?
+        Story.where(id: Setting.take.spotlight_story_id).take
+      end
+    end
 end

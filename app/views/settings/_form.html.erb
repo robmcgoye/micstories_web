@@ -1,0 +1,25 @@
+        <%= form_with(model: @setting) do |f| %>
+         
+          <div class="input-group mb-3 row">
+            <%= f.label "Spotlighted Story", class: "col-2 col-form-label" %>
+            <div class="col-10">
+              <% stories = Story.published_stories %>
+              <select name="setting[spotlight_story_id]">
+                <option value="0" <%= @setting.spotlight_story_id == 0  ? "selected" : "" %>>None</option>
+                <% stories.each do |story| %>
+                  <option value="<%= story.id %>" <%= @setting.spotlight_story_id == story.id  ? "selected" : "" %>><%= story.short_title %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="input-group mb-3 row">
+            <%= f.label :default_description, class: "col-2 col-form-label" %>
+            <div class="col-10">
+              <%= f.text_area :default_description, rows:10, class: "form-control shadow rounded", 
+                  placeholder: "Meta Description" %>
+            </div>
+          </div>        
+          <div class="input-group mb-3 justify-content-center">
+            <%= f.submit class: "btn btn-outline-dark btn-lg" %>
+          </div>
+        <% end %>

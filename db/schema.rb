@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_162936) do
+ActiveRecord::Schema.define(version: 2022_06_13_184448) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "story_id", null: false
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 2022_05_03_162936) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["character_id"], name: "index_posts_on_character_id"
     t.index ["part_id"], name: "index_posts_on_part_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer "spotlight_story_id"
+    t.string "default_description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "stories", force: :cascade do |t|

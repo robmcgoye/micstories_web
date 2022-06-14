@@ -9,12 +9,8 @@ Rails.application.routes.draw do
     end
     resources :characters, except: :show
   end
-  # resources :chapters do
-  #   resources :parts
-  # end
-  # 
 
-  root 'pages#about'
+  root 'pages#index'
   pages.each do |page|
     get "#{page}", to: "pages##{page}"
   end
@@ -24,7 +20,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  get 'import', to: 'import#index'
-  post 'process', to: 'import#add_data'
+  resources :settings, only: [:new, :create, :edit, :update]
+  # get 'import', to: 'import#index'
+  # post 'process', to: 'import#add_data'
 
 end

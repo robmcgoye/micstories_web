@@ -44,7 +44,12 @@
             <% end %>
           </ul>
         </li>
-
+        <% if admin_user? %>
+        <li class="nav-item">
+          
+          <%= link_to "Settings", get_settings_path, class: "#{request.path == get_settings_path  ? "nav-link active" : "nav-link"}" %>
+        </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav ml-auto p-1">
         <li class="nav-item">
