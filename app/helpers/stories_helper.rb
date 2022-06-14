@@ -17,7 +17,7 @@ module StoriesHelper
         if admin_user?
           part = chapter.parts.first
         else
-          part = chapter.parts.published_parts.take
+          part = chapter.parts.published_parts(story_id).take
         end
         if part.present?
           return part_path(part)
